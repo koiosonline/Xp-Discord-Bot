@@ -127,3 +127,15 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Google service account
+spreadsheets/
+
+# Spreadsheet data
+data/public/
+
+# Contract data
+data/web3/
+
+# Database
+data/db/database.db
