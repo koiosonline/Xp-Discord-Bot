@@ -25,6 +25,9 @@ class Twitter(Cog):
         self.check_new_retweets.start()
         self.check_new_followers.start()
 
+    """
+    Check for new tweets every 3 hours
+    """
     @tasks.loop(hours=3)
     async def check_new_tweets(self):
         user_id = 1121036692700454912
@@ -50,6 +53,9 @@ class Twitter(Cog):
                     await self.bot.stdout.send(f"new tweet: {tweet}")
                 break
 
+    """
+    Check for new likes on latest tweet every hour
+    """
     @tasks.loop(hours=1)
     async def check_new_likes(self):
         registered_users = db.records("SELECT TwitterName FROM twitter")
@@ -81,6 +87,9 @@ class Twitter(Cog):
                                            f"for liking the latest Koios tweet")
                 db.commit()
 
+    """
+    Check for new retweets on latest tweet every hour
+    """
     @tasks.loop(hours=1)
     async def check_new_retweets(self):
         registered_users = db.records("SELECT TwitterName FROM twitter")
@@ -112,6 +121,9 @@ class Twitter(Cog):
                                            f"for retweeting the latest Koios tweet")
                 db.commit()
 
+    """
+    Check for new followers every 6 hours
+    """
     @tasks.loop(hours=6)
     async def check_new_followers(self):
         user_id = 1121036692700454912
